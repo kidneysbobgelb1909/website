@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -14,54 +14,113 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
+        <!-- Footer styling (local to this page) -->
+        <style>
+          .jiin-footer {
+            background: #fff;
+            border-top: 1px solid rgba(0,0,0,.12);
+          }
+          .jiin-footer .contact-grid {
+            padding-top: 2.25rem;
+            padding-bottom: 1.25rem;
+          }
+          .jiin-footer .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            text-align: left;
+          }
+          .jiin-footer .icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 999px;
+            border: 1px solid rgba(0,0,0,.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 56px;
+          }
+          .jiin-footer .label {
+            font-weight: 700;
+            font-size: .95rem;
+            margin-bottom: .1rem;
+            letter-spacing: .3px;
+          }
+          .jiin-footer .value,
+          .jiin-footer .value a {
+            font-size: .95rem;
+            color: rgba(0,0,0,.7);
+            text-decoration: none;
+            word-break: break-word;
+          }
+          .jiin-footer .value a:hover {
+            text-decoration: underline;
+          }
+          .jiin-footer .footer-bottom {
+            padding: 1.25rem 0 1.5rem;
+          }
+          .jiin-footer .social {
+            margin-top: .75rem;
+          }
+
+          /* Make the 3 blocks stack nicely on small screens */
+          @media (max-width: 991px) {
+            .jiin-footer .contact-item {
+              justify-content: flex-start;
+            }
+          }
+        </style>
     </head>
+
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-  <div class="container px-4 px-lg-5">
-    <!-- Brand -->
-    <a class="navbar-brand" href="/index.html">Jiin-Tech</a>
+          <div class="container px-4 px-lg-5">
+            <!-- Brand -->
+            <a class="navbar-brand" href="/index.html">Jiin-Tech</a>
 
-    <!-- Right side: language switch + menu button -->
-    <div class="d-flex align-items-center ms-auto">
-      <!-- Language switch -->
-      <div class="me-2 d-flex gap-2">
-        <a class="btn btn-sm btn-outline-secondary"
-           href="/index.html"
-           onclick="localStorage.setItem('lang','zh')">中文</a>
+            <!-- Right side: language switch + menu button -->
+            <div class="d-flex align-items-center ms-auto">
+              <!-- Language switch -->
+              <div class="me-2 d-flex gap-2">
+                <a class="btn btn-sm btn-outline-secondary"
+                   href="/index.html"
+                   onclick="localStorage.setItem('lang','zh')">中文</a>
 
-        <a class="btn btn-sm btn-outline-secondary"
-           href="/en/index.html"
-           onclick="localStorage.setItem('lang','en')">EN</a>
-      </div>
+                <a class="btn btn-sm btn-outline-secondary"
+                   href="/en/index.html"
+                   onclick="localStorage.setItem('lang','en')">EN</a>
+              </div>
 
-      <!-- MENU button -->
-      <button class="navbar-toggler" type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarResponsive"
-              aria-controls="navbarResponsive"
-              aria-expanded="false"
-              aria-label="Toggle navigation">
-        Menu <i class="fas fa-bars"></i>
-      </button>
-    </div>
+              <!-- MENU button -->
+              <button class="navbar-toggler" type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#navbarResponsive"
+                      aria-controls="navbarResponsive"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation">
+                Menu <i class="fas fa-bars"></i>
+              </button>
+            </div>
 
-    <!-- Collapsible menu -->
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ms-auto py-4 py-lg-0">
-        <li class="nav-item">
-          <a class="nav-link px-lg-3 py-3 py-lg-4" href="/index.html">首頁</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link px-lg-3 py-3 py-lg-4" href="/about.html">關於我們</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact.html">聯絡我們</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+            <!-- Collapsible menu -->
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link px-lg-3 py-3 py-lg-4" href="/index.html">首頁</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-lg-3 py-3 py-lg-4" href="/about.html">關於我們</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact.html">聯絡我們</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
 
         <!-- Page Header-->
         <header class="masthead" style="background-image: url('assets/img/Jiin home.PNG')">
@@ -76,6 +135,7 @@
                 </div>
             </div>
         </header>
+
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -138,42 +198,93 @@
                 </div>
             </div>
         </div>
-        <!-- Footer-->
-        <footer class="border-top">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <ul class="list-inline text-center">
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Jiin-Tech 2025</div>
-                    </div>
+
+        <!-- Footer (NEW DESIGN) -->
+        <footer class="jiin-footer">
+          <div class="container px-4 px-lg-5">
+
+            <!-- Contact blocks -->
+            <div class="row gx-4 gx-lg-5 contact-grid">
+              <div class="col-md-4 mb-4 mb-md-0">
+                <div class="contact-item">
+                  <span class="icon-circle" aria-hidden="true">
+                    <i class="fas fa-location-dot"></i>
+                  </span>
+                  <div>
+                    <div class="label">Address</div>
+                    <div class="value">新竹縣竹北市中和街52號</div>
+                  </div>
                 </div>
+              </div>
+
+              <div class="col-md-4 mb-4 mb-md-0">
+                <div class="contact-item">
+                  <span class="icon-circle" aria-hidden="true">
+                    <i class="fas fa-phone"></i>
+                  </span>
+                  <div>
+                    <div class="label">Tel</div>
+                    <div class="value">
+                      <a href="tel:+88635534528">03-5534528</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="contact-item">
+                  <span class="icon-circle" aria-hidden="true">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  <div>
+                    <div class="label">Mail</div>
+                    <div class="value">
+                      <a href="mailto:info@jiin-tech.com">info@jiin-tech.com</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- Social + copyright -->
+            <div class="row gx-4 gx-lg-5 justify-content-center footer-bottom">
+              <div class="col-md-10 col-lg-8 col-xl-7 text-center">
+                <ul class="list-inline text-center social">
+                  <li class="list-inline-item">
+                    <a href="#!" aria-label="Twitter">
+                      <span class="fa-stack fa-lg">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#!" aria-label="Facebook">
+                      <span class="fa-stack fa-lg">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="#!" aria-label="GitHub">
+                      <span class="fa-stack fa-lg">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+
+                <div class="small text-center text-muted fst-italic">
+                  Copyright &copy; Jiin-Tech 2025
+                </div>
+              </div>
+            </div>
+
+          </div>
         </footer>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
