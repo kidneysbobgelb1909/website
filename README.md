@@ -1,82 +1,197 @@
-# [Start Bootstrap - Clean Blog](https://startbootstrap.com/theme/clean-blog/)
+# 晉英精密工業 官方網站 · JIIN Tech Website
 
-[Clean Blog](https://startbootstrap.com/theme/clean-blog/) is a stylish, responsive blog theme for [Bootstrap](https://getbootstrap.com/) created by [Start Bootstrap](https://startbootstrap.com/). This theme features a blog homepage, about page, contact page, and an example post page along with a working PHP contact form.
+網址：**https://www.jiin-tech.com**
 
-## Preview
+本文件說明網站的結構，以及如何修改網站內容。不需要寫程式的經驗，照著步驟做即可。
 
-[![Clean Blog Preview](https://assets.startbootstrap.com/img/screenshots/themes/clean-blog.png)](https://startbootstrap.github.io/startbootstrap-clean-blog/)
+---
 
-**[View Live Preview](https://startbootstrap.github.io/startbootstrap-clean-blog/)**
+## 1. 網站是怎麼運作的
 
-## Status
+- 網站放在 GitHub，透過 **GitHub Pages** 免費上線。
+- 上線的內容來自 **`website` 分支** 裡的 **`docs/` 資料夾**。
+- 只要 `docs/` 裡的檔案一被更新（commit / push），**約 1 分鐘後**網站就會自動更新。
+- 網站是純 HTML 檔案，沒有後台、沒有資料庫。
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/StartBootstrap/startbootstrap-clean-blog/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/startbootstrap-clean-blog.svg)](https://www.npmjs.com/package/startbootstrap-clean-blog)
+> ⚠️ 修改 `website` 分支 = 直接修改正式網站。修改前請先確認內容正確。
 
-## Download and Installation
+---
 
-To begin using this template, choose one of the following options to get started:
+## 2. 檔案在哪裡
 
-* [Download the latest release on Start Bootstrap](https://startbootstrap.com/theme/clean-blog/)
-* Install via npm: `npm i startbootstrap-clean-blog`
-* Clone the repo: `git clone https://github.com/StartBootstrap/startbootstrap-clean-blog.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/StartBootstrap/startbootstrap-clean-blog)
+```
+docs/
+├── index.html         中文 首頁
+├── about.html         中文 關於我們
+├── contact.html       中文 聯絡我們
+├── en/                英文版（index / about / contact）
+├── de/                德文版（index / about / contact）
+├── css/site.css       全站樣式（顏色、字型、版面）
+├── assets/
+│   ├── img/factory.jpg      首頁大圖（工廠照片）
+│   └── logo/                Logo 檔案
+│       ├── jiin-logo.svg        頁首用（淺色底）
+│       ├── jiin-logo-dark.svg   頁尾用（深色底）
+│       └── jiin-symbol.svg      瀏覽器分頁小圖示
+└── CNAME              網域設定 —— ⛔ 請勿刪除或修改
+```
 
-## Usage
+網站共 **9 個頁面**：3 種語言（中文、English、Deutsch）× 3 頁（首頁、關於我們、聯絡我們）。
 
-### Basic Usage
+> 專案根目錄的 `src/`、`dist/`、`scripts/`、`package.json` 是舊版樣板留下的檔案，**目前沒有使用**，修改它們不會影響網站。
 
-After downloading, simply edit the HTML and CSS files included with `dist` directory. These are the only files you need to worry about, you can ignore everything else! To preview the changes you make to the code, you can open the `index.html` file in your web browser.
+---
 
-### Advanced Usage
+## 3. 如何修改文字（最常用）
 
-Clone the source files of the theme and navigate into the theme's root directory. Run `npm install` and then run `npm start` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `package.json` file to see which scripts are included.
+### 方法 A：直接在 GitHub 網頁上修改（推薦，不需安裝任何軟體）
 
-### Contact Form
+1. 登入 GitHub，打開 https://github.com/kidneysbobgelb1909/website
+2. 確認左上角分支選的是 **`website`**
+3. 進入 `docs/`，點選要修改的檔案（例如 `about.html`）
+4. 點右上角的 **鉛筆圖示 ✏️（Edit this file）**
+5. 用 `Ctrl+F` / `Cmd+F` 找到要改的文字，直接修改
+   - 只改 `>` 和 `<` 之間的文字，**不要動到 `<...>` 標籤本身**
+   - 例如：`<p>這段文字可以改</p>`
+6. 點右上角 **Commit changes…**，寫一句說明（例如「更新公司簡介」），按 **Commit changes**
+7. 約 1 分鐘後到網站確認（若看到舊內容，按 `Ctrl+Shift+R` / `Cmd+Shift+R` 強制重新整理）
 
-The contact form available with this theme is prebuilt to use [SB Forms](https://startbootstrap.com/solution/contact-forms).
-SB Forms is a simple form solution for adding functional forms to your theme. Since this theme is prebuilt using our
-SB Forms markup, all you need to do is sign up for [SB Forms on Start Bootstrap](https://startbootstrap.com/solution/contact-forms).
+### 方法 B：在自己電腦上修改並預覽
 
-After signing up you will need to set the domain name your form will be used on, and you will then see your
-access key. Copy this and paste it into the `data-sb-form-api-token='API_TOKEN'` data attribute in place of
-`API_TOKEN`. That's it! Your forms will be up and running!
+適合一次改很多地方。需要安裝 Git 與 Python（Mac 已內建 Python）。
 
-If you aren't using SB Forms, simply delete the custom data attributes from the form, and remove the link above the
-closing `</body>` tag to SB Forms.
+```bash
+git clone git@github.com:kidneysbobgelb1909/website.git
+cd website
+git checkout website
 
-#### npm Scripts
+# 開啟本機預覽
+cd docs
+python3 -m http.server 8000
+# 用瀏覽器打開 http://localhost:8000
+```
 
-* `npm run build` builds the project - this builds assets, HTML, JS, and CSS into `dist`
-* `npm run build:assets` copies the files in the `src/assets/` directory into `dist`
-* `npm run build:pug` compiles the Pug located in the `src/pug/` directory into `dist`
-* `npm run build:scripts` brings the `src/js/scripts.js` file into `dist`
-* `npm run build:scss` compiles the SCSS files located in the `src/scss/` directory into `dist`
-* `npm run clean` deletes the `dist` directory to prepare for rebuilding the project
-* `npm run start:debug` runs the project in debug mode
-* `npm start` or `npm run start` runs the project, launches a live preview in your default browser, and watches for changes made to files in `src`
+修改檔案後重新整理瀏覽器即可看到結果（尚未上線）。確認沒問題後：
 
-You must have npm installed in order to use this build environment.
+```bash
+git add docs
+git commit -m "說明這次改了什麼"
+git push origin website
+```
 
-## Bugs and Issues
+---
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/StartBootstrap/startbootstrap-clean-blog/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](https://startbootstrap.com/theme/clean-blog/).
+## 4. 修改時的重要規則
 
-## About
+### ✅ 三種語言要一起改
+同一段內容在中文、英文、德文頁面各有一份。改了中文版，請記得也修改：
+- `docs/xxx.html`（中文）
+- `docs/en/xxx.html`（英文）
+- `docs/de/xxx.html`（德文）
 
-Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
+如果不確定英文或德文怎麼寫，可以先改中文，再請人協助翻譯；但不要讓三個版本的事實資料（例如設備數量、電話）不一致。
 
-* <https://startbootstrap.com>
-* <https://twitter.com/SBootstrap>
+### ✅ 頁首與頁尾在每一頁都有一份
+選單、Logo、頁尾的公司資訊，**9 個頁面各有一份**。要修改時，9 個檔案都要改。
 
-Start Bootstrap was created by and is maintained by **[David Miller](https://davidmiller.io/)**, Owner of [Blackrock Digital](https://startbootstrap.io/).
+### ✅ 聯絡資訊出現在多個地方
+更改 **電話、Email、地址** 時，請在全部 9 個檔案中搜尋舊的內容並全部替換：
 
-* <https://davidmiller.io>
-* <https://twitter.com/davidmillerhere>
-* <https://github.com/davidtmiller>
+| 資訊 | 搜尋這段文字 |
+|---|---|
+| 電話（中文頁） | `03-5534528` |
+| 電話（英/德文頁） | `+886-3-553-4528` |
+| 電話（撥號連結，所有頁） | `tel:+88635534528` |
+| Email | `info@jiin-tech.com` |
+| 地址（中文） | `新竹縣竹北市中和街52號` |
+| 地址（英/德文） | `No. 52, Zhonghe St.` |
 
-Start Bootstrap is based on the [Bootstrap](https://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+地圖連結與地圖（聯絡我們頁）使用的是網址編碼後的中文地址，若地址變更，請一併更新 `contact.html` 中的 `maps.google.com` 連結。
 
-## Copyright and License
+### ⛔ 不要做的事
+- 不要刪除或修改 `docs/CNAME`（會讓 www.jiin-tech.com 失效）
+- 不要改檔名或資料夾名稱（會造成連結失效）
+- 不要上傳未壓縮的大圖（見下方）
+- 不要在網站上公開客戶名稱，除非客戶已同意
 
-Copyright 2013-2023 Start Bootstrap LLC. Code released under the [MIT](https://github.com/StartBootstrap/startbootstrap-clean-blog/blob/master/LICENSE) license.
+---
+
+## 5. 常見修改對照表
+
+| 想修改的內容 | 檔案 | 搜尋關鍵字 |
+|---|---|---|
+| 首頁大標題 | `index.html` | `<h1>` |
+| 首頁四個數字（1994、ISO 9001…） | `index.html` | `fact-value` |
+| 技術能力三張卡片 | `index.html` | `card-num` |
+| 設備說明（沖床噸數範圍） | `index.html` | `80 至 160 噸` |
+| 公司簡介文字 | `about.html` | `class="prose"` |
+| 公司概要（成立、認證…） | `about.html` | `rule-list` |
+| 藍色「有新的專案嗎？」區塊 | `index.html`、`about.html` | `class="cta"` |
+| 搜尋引擎顯示的網站描述 | 每一頁 | `name="description"` |
+| 瀏覽器分頁標題 | 每一頁 | `<title>` |
+
+**範例：新增一台 200 噸沖床（噸數範圍變成 80–200 噸）**
+1. `index.html`：首頁上方數字區的「80–160 噸」，以及設備說明「涵蓋 80 至 160 噸」
+2. `about.html`：公司概要中的「設備」一行
+3. 英文版、德文版搜尋 `80–160 t` 並重複以上步驟
+
+> 網站上只寫噸數範圍，**不寫沖床台數**。
+
+---
+
+## 6. 圖片與 Logo
+
+### 更換或新增照片
+1. 先把照片縮小：寬度約 **2000 像素以內**、檔案大小 **500 KB 以內**、格式 **JPG**
+   - Mac：在「預覽程式」→ 工具 → 調整大小；輸出時選 JPEG、品質調低
+   - 也可使用 https://squoosh.app 線上壓縮
+2. 檔名只用 **英文小寫、數字、連字號**，例如 `press-160t.jpg`（不要有空白或中文）
+3. 放到 `docs/assets/img/`
+4. 首頁大圖目前是 `factory.jpg`，設定在 `docs/css/site.css` 中搜尋 `factory.jpg`；若用同一個檔名直接覆蓋，就不必改程式碼
+
+### Logo
+Logo 檔案在 `docs/assets/logo/`。若要更換，請用相同檔名覆蓋：
+- `jiin-logo.svg`：頁首（白底，黑字 + 品牌藍點）
+- `jiin-logo-dark.svg`：頁尾（深色底，白字 + 亮藍點）
+- `jiin-symbol.svg`：瀏覽器分頁小圖示
+
+---
+
+## 7. 品牌顏色與字型
+
+顏色統一設定在 `docs/css/site.css` 最上方的 `:root` 區塊。
+
+| 用途 | 色碼 |
+|---|---|
+| 品牌藍（按鈕、重點） | `#0a5aa8` |
+| 深色底上的亮藍（頁尾 Logo） | `#3d8fe0` |
+| 主要文字 | `#16191d` |
+| 深色背景（頁尾、頁首區塊） | `#1c2026` |
+
+字型：英文使用 **Inter**，中文使用 **Noto Sans TC**（由 Google Fonts 載入）。
+
+---
+
+## 8. 改壞了怎麼辦
+
+每一次修改都有紀錄，可以還原。
+
+- **GitHub 網頁**：打開該檔案 → 點 **History** → 找到改壞之前的版本 → 點 `...` → **View file** → 複製內容，回到檔案編輯並貼上覆蓋 → Commit
+- **指令列**：
+  ```bash
+  git log --oneline          # 找到要撤銷的那次修改
+  git revert <修改編號>
+  git push origin website
+  ```
+
+---
+
+## 9. 其他說明
+
+- **聯絡表單**：網站目前沒有線上表單（GitHub Pages 無法接收表單資料），客戶透過 Email 與電話聯絡。若日後需要表單，可使用 Formspree 等服務。
+- **新增頁面**：複製一個相近的頁面（例如 `about.html`）並改名，修改內容後，記得在 9 個頁面的選單（`<nav class="nav"`）與頁尾中加上連結，三種語言都要新增。
+- **網域**：`www.jiin-tech.com` 的 DNS 指向 GitHub Pages（`kidneysbobgelb1909.github.io`），設定在網域註冊商處，一般不需要更動。
+
+---
+
+© 晉英精密工業有限公司 JIIN TECH INDUSTRIAL CO., LTD.
