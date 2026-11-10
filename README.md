@@ -30,9 +30,12 @@ docs/
 ├── assets/
 │   ├── img/factory.jpg      首頁大圖（工廠照片）
 │   └── logo/                Logo 檔案
-│       ├── jiin-logo.svg        頁首用（淺色底）
-│       ├── jiin-logo-dark.svg   頁尾用（深色底）
-│       └── jiin-symbol.svg      瀏覽器分頁小圖示
+│       ├── jiin-logo.svg          頁首用（淺色模式）
+│       ├── jiin-logo-dark.svg     頁尾用；深色模式的頁首也用這個
+│       ├── jiin-symbol.svg        瀏覽器分頁小圖示（淺色）
+│       └── jiin-symbol-dark.svg   瀏覽器分頁小圖示（深色）
+│   ├── flags/                 語言切換按鈕的國旗（tw / us / de）
+│   └── fonts/                 英文字型 Inter（放在本站，不從 Google 載入）
 └── CNAME              網域設定 —— ⛔ 請勿刪除或修改
 ```
 
@@ -152,14 +155,18 @@ git push origin website
 ### Logo
 Logo 檔案在 `docs/assets/logo/`。若要更換，請用相同檔名覆蓋：
 - `jiin-logo.svg`：頁首（白底，黑字 + 品牌藍點）
-- `jiin-logo-dark.svg`：頁尾（深色底，白字 + 亮藍點）
-- `jiin-symbol.svg`：瀏覽器分頁小圖示
+- `jiin-logo-dark.svg`：頁尾，以及深色模式的頁首（白字 + 亮藍點）
+- `jiin-symbol.svg` / `jiin-symbol-dark.svg`：瀏覽器分頁小圖示（淺色 / 深色）
 
 ---
 
 ## 7. 品牌顏色與字型
 
 顏色統一設定在 `docs/css/site.css` 最上方的 `:root` 區塊。
+
+網站預設**依照訪客手機或電腦的系統設定，自動切換淺色／深色模式**。訪客也可以點頁首的外觀按鈕切換：◐ 自動 → ☀ 淺色 → ☾ 深色，選擇會記在瀏覽器裡。
+
+深色模式的顏色在 `site.css` 開頭，**有兩個內容相同的區塊**（`@media (prefers-color-scheme: dark)` 與 `:root[data-theme="dark"]`）。修改深色顏色時，兩個區塊都要改成一樣；修改淺色顏色時，改 `:root` 區塊。
 
 | 用途 | 色碼 |
 |---|---|
@@ -168,7 +175,9 @@ Logo 檔案在 `docs/assets/logo/`。若要更換，請用相同檔名覆蓋：
 | 主要文字 | `#16191d` |
 | 深色背景（頁尾、頁首區塊） | `#1c2026` |
 
-字型：英文使用 **Inter**，中文使用 **Noto Sans TC**（由 Google Fonts 載入）。
+字型：英文使用 **Inter**（檔案放在 `docs/assets/fonts/`），中文使用電腦內建字型（Mac/iPhone：蘋方；Windows：微軟正黑體）。
+
+> 隱私：網站**不從 Google 載入字型**，聯絡頁的地圖也要訪客點擊「載入地圖」後才會連到 Google。因此網站不會主動傳送訪客資料給第三方，**不需要 cookie 同意彈窗**。請不要加入 Google Fonts、Google Analytics、直接嵌入的地圖或 YouTube 影片，否則可能需要 cookie 同意機制（對德國／歐洲訪客尤其重要）。
 
 ---
 

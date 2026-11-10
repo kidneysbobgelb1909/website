@@ -1,5 +1,14 @@
 /* Jiin-Tech — industrial, grid-based design */
 
+/* Inter is self-hosted (no requests to Google). Chinese uses system fonts. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin.woff2") format("woff2");
+}
+
 :root {
   --ink: #16191d;
   --ink-2: #3b4148;
@@ -8,12 +17,64 @@
   --bg: #ffffff;
   --bg-alt: #f3f4f6;
   --dark: #1c2026;
-  --accent: #0a5aa8;
+  --accent: #0a5aa8;        /* links, labels, thin rules */
+  --accent-fill: #0a5aa8;   /* buttons and blue bands (white text on top) */
   --accent-dark: #084a8a;
+  --header-bg: rgba(255, 255, 255, 0.97);
+  --stripe: rgba(0, 0, 0, 0.025);
+  --footer-border: transparent;
+  --flag-edge: rgba(0, 0, 0, 0.12);
+  --show-logo-light: block;
+  --show-logo-dark: none;
   --max: 1200px;
   --gutter: clamp(16px, 4vw, 40px);
-  --font: "Inter", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+  --font: "Inter", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light dark;
 }
+
+/* Dark mode: follows the system by default; the header button can force
+   light or dark (sets data-theme on <html>). Keep both blocks identical. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e8eaed;
+    --ink-2: #b9bfc7;
+    --muted: #8d959e;
+    --line: #2d333b;
+    --bg: #121418;
+    --bg-alt: #1a1e24;
+    --dark: #0b0d10;
+    --accent: #5ea3ec;
+    --accent-fill: #0a5aa8;
+    --accent-dark: #0c66be;
+    --header-bg: rgba(18, 20, 24, 0.97);
+    --stripe: rgba(255, 255, 255, 0.03);
+    --footer-border: var(--line);
+    --flag-edge: rgba(255, 255, 255, 0.18);
+    --show-logo-light: none;
+    --show-logo-dark: block;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #e8eaed;
+  --ink-2: #b9bfc7;
+  --muted: #8d959e;
+  --line: #2d333b;
+  --bg: #121418;
+  --bg-alt: #1a1e24;
+  --dark: #0b0d10;
+  --accent: #5ea3ec;
+  --accent-fill: #0a5aa8;
+  --accent-dark: #0c66be;
+  --header-bg: rgba(18, 20, 24, 0.97);
+  --stripe: rgba(255, 255, 255, 0.03);
+  --footer-border: var(--line);
+  --flag-edge: rgba(255, 255, 255, 0.18);
+  --show-logo-light: none;
+  --show-logo-dark: block;
+  color-scheme: dark;
+}
+:root[data-theme="light"] { color-scheme: light; }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -30,7 +91,7 @@ body {
 
 img { max-width: 100%; display: block; }
 a { color: var(--accent); }
-h1, h2, h3 { line-height: 1.2; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+h1, h2, h3 { line-height: 1.2; margin: 0; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
 p { margin: 0 0 1em; }
 
 .wrap {
@@ -45,7 +106,7 @@ p { margin: 0 0 1em; }
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.97);
+  background: var(--header-bg);
   border-bottom: 1px solid var(--line);
 }
 
@@ -66,6 +127,8 @@ p { margin: 0 0 1em; }
 }
 
 .brand img { height: 40px; width: auto; }
+.logo-light { display: var(--show-logo-light); }
+.logo-dark { display: var(--show-logo-dark); }
 
 .nav { display: flex; gap: 28px; }
 .nav a {
@@ -81,14 +144,46 @@ p { margin: 0 0 1em; }
 
 .lang { display: flex; border: 1px solid var(--line); }
 .lang a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   font-size: 13px;
   font-weight: 600;
-  padding: 5px 10px;
+  line-height: 1;
+  height: 34px;
+  padding: 0 11px;
   color: var(--muted);
   text-decoration: none;
+  white-space: nowrap;
+}
+.lang a:hover { color: var(--ink); background: var(--bg-alt); }
+.flag {
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px var(--flag-edge);
+  flex: 0 0 auto;
 }
 .lang a + a { border-left: 1px solid var(--line); }
-.lang a[aria-current="true"] { background: var(--ink); color: #fff; }
+.lang a[aria-current="true"] { background: var(--ink); color: var(--bg); }
+.lang a[aria-current="true"] .flag { box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35); }
+
+.theme-btn {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.theme-btn:hover { border-color: var(--muted); }
+.theme-btn svg { width: 18px; height: 18px; display: none; }
+.theme-btn[data-mode="auto"] [data-icon="auto"],
+.theme-btn[data-mode="light"] [data-icon="light"],
+.theme-btn[data-mode="dark"] [data-icon="dark"] { display: block; }
 
 .menu-btn {
   display: none;
@@ -123,7 +218,7 @@ p { margin: 0 0 1em; }
     right: 0;
     flex-direction: column;
     gap: 0;
-    background: #fff;
+    background: var(--bg);
     border-bottom: 1px solid var(--line);
     padding: 0 var(--gutter);
   }
@@ -132,8 +227,10 @@ p { margin: 0 0 1em; }
   .nav a:last-child { border-bottom: 0; }
   .nav a[aria-current="page"] { border-bottom-color: var(--line); color: var(--accent); }
   .brand img { height: 32px; }
-  .site-header .wrap { gap: 12px; }
-  .lang a { padding: 5px 8px; }
+  .site-header .wrap { gap: 10px; }
+  .lang a { padding: 0 9px; }
+  .lang-label { display: none; }
+  .theme-btn, .menu-btn { width: 36px; height: 36px; }
 }
 
 /* ---------- Hero ---------- */
@@ -183,8 +280,8 @@ p { margin: 0 0 1em; }
   font-weight: 600;
   font-size: 15px;
   text-decoration: none;
-  border: 2px solid var(--accent);
-  background: var(--accent);
+  border: 2px solid var(--accent-fill);
+  background: var(--accent-fill);
   color: #fff;
   transition: background 0.15s, border-color 0.15s;
 }
@@ -336,7 +433,7 @@ p { margin: 0 0 1em; }
 
 /* Call to action band */
 .cta {
-  background: var(--accent);
+  background: var(--accent-fill);
   color: #fff;
 }
 .cta .wrap {
@@ -350,8 +447,8 @@ p { margin: 0 0 1em; }
 }
 .cta h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 8px; }
 .cta p { margin: 0; color: rgba(255, 255, 255, 0.85); }
-.cta .btn { background: #fff; color: var(--accent); border-color: #fff; }
-.cta .btn:hover { background: var(--bg-alt); }
+.cta .btn { background: #fff; color: #0a5aa8; border-color: #fff; }
+.cta .btn:hover { background: #e8eef5; border-color: #e8eef5; }
 
 /* Contact */
 .contact-grid {
@@ -393,6 +490,7 @@ p { margin: 0 0 1em; }
 /* ---------- Footer ---------- */
 
 .site-footer {
+  border-top: 1px solid var(--footer-border);
   background: var(--dark);
   color: rgba(255, 255, 255, 0.7);
   font-size: 15px;
@@ -435,3 +533,19 @@ p { margin: 0 0 1em; }
   font-weight: 600;
   color: #fff !important;
 }
+
+/* Click-to-load map: Google is contacted only after the visitor agrees */
+.map-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+  padding: 24px;
+  background: var(--bg-alt) repeating-linear-gradient(45deg, transparent 0 14px, var(--stripe) 14px 28px);
+  border: 1px solid var(--line);
+  filter: none;
+}
+.map-placeholder p { margin: 0; max-width: 32em; color: var(--ink-2); font-size: 15px; }
+.map-placeholder .btn { cursor: pointer; font-family: inherit; }
